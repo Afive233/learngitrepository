@@ -1,3 +1,41 @@
+ONE：一个库中的版本控制
+
+学习git 添加提交操作
+ 0   git init                                  进入目录下初始化
+ 1   git add XXX                               添加         到暂存区
+ 2   git commit -m "输入自己给每次提交的说明"    提交         到分支
+
+查看状态信息历史等
+    git status                                查看状态
+    git diff XXX                              查看文件改动有啥不一样
+
+    git log                                   查看提交历史
+    git reflog                                查看命令历史   
 
 
-学习git
+撤销
+git流向：工作区（目录下创建了文件，还没add时）>暂存区（add了）>版本库repository(commit了)
+    撤销工作区修改：       git checkout -- XXX                 其实是版本库中最新版本替换     
+    撤销暂存区修改：       git reset HEAD XXX       
+    撤销已提交（版本回退）：git reset --hard commit_id          commit_id：可以是HEAD（最新版本），HEAD^ (上一个版本)，HEAD^^，HEAD~100(上100个版本)，...  
+
+删除 
+    git rm XXX  
+    并且commit更新版本，若没更新版本，还可用checkout恢复
+    
+////////////////////////////////////////////////////////////////////////////
+
+TWO：多库
+
+远程关联同步本地库
+第一次创建远程库
+    git remote add origin git@github.com:Afive233/XXX.git  XXX:库名字  origin：一般将远程库命名为origin
+将本地库内容推送到远程库
+    git push -u origin master                    实际上是把master推送到远程 -u为第一次推送时顺带关联远程库
+查看信息    
+    git remote -v
+删除远程库关联
+    git remote rm origin
+
+从远程库克隆
+    git clone git@github.com:Afive233/XXX.git            除了git://的ssh协议 还可以用https等协议
